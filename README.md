@@ -1,7 +1,7 @@
 # Employee Tracker
 
 ## TODOs:
-- Create database schema with 3 tables (dept, role, employee)
+*** Gitignore ***
 - Seed db with sample data
 - Set up index.js with require statements (mysql, inquirer, console.table) and database connection
 - Set up script with inquirer prompt function(s)
