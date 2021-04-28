@@ -1,8 +1,6 @@
 # Employee Tracker
 
 ## TODOs:
-*** Gitignore ***
-- Seed db with sample data
 - Set up index.js with require statements (mysql, inquirer, console.table) and database connection
 - Set up script with inquirer prompt function(s)
 - Set up script with basic queries, written as Classes
