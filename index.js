@@ -1,7 +1,5 @@
-const inquirer = require('inquirer');
 const mysql = require('mysql');
-const ctable = require('console.table');
-// require the start function
+const start = require('./scripts/inquirer.js');
 
 // create the connection information for the sql database
 const connection = mysql.createConnection({
@@ -16,5 +14,5 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) throw err;
     // run the start function after the connection is made to prompt the user
-    console.log('Hello world');
+    start(connection);
 });
