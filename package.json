@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "A command line interface for interaction with a schema of tables including Department, Role, and Employee",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvaden19/employee-tracker.git"
+  },
+  "author": "Kelly L Vaden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kvaden19/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/kvaden19/employee-tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
