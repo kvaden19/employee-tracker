@@ -1,9 +1,9 @@
 # Employee Tracker
 
 ## TODOs:
-- Set up script with basic queries (written as Classes?)
+- Write basic functions / queries
     * Add departments, roles, employees
-    * View departments, roles, employees
+    * View roles, employees
     * Update employee roles
 - Work on bonus queries
     * Update employee managers

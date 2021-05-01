@@ -18,22 +18,22 @@ const showMenu = (connection) => {
                 viewDepartments(connection);
                 break;
             case 'View Roles':
-                viewRoles();
+                viewRoles(connection);
                 break;
             case 'View Employees':
-                viewEmployees();
+                viewEmployees(connection);
                 break;
             case 'Add Department':
-                AddDepartment();
+                AddDepartment(connection);
                 break;
             case 'Add Role':
-                AddRole();
+                AddRole(connection);
                 break;
             case 'Add Employee':
-                AddEmployee();
+                AddEmployee(connection);
                 break;
             case 'Update Employee':
-                UpdateEmployee();
+                UpdateEmployee(connection);
                 break;                  
             default:
                 connection.end();
@@ -51,9 +51,23 @@ const viewDepartments = (connection) => {
     });
 };
 
-// viewRoles();
+const viewRoles = (connection) => {
+    console.log('Viewing all roles...\n');
+    connection.query('SELECT * FROM role', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        showMenu(connection);
+    });
+};
 
-// viewEmployees();
+const viewEmployees = (connection) => {
+    console.log('Viewing all employees...\n');
+    connection.query('SELECT * FROM employee', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        showMenu(connection);
+    });
+};
 
 // AddDepartment();
 
