@@ -72,31 +72,107 @@ const viewEmployees = (connection) => {
 const addDepartment = (connection) => {
     inquirer
     .prompt([
-      {
+        {
         name: 'deptName',
         type: 'input',
         message: 'What is the name of the new department?'
-      }
+        }
     ])
     .then((answer) => {
       // when finished prompting, insert a new item into the db with that info
-      connection.query(
+        connection.query(
         'INSERT INTO department SET ?',
         {
-          name: answer.deptName
+            name: answer.deptName
         },
         (err) => {
-          if (err) throw err;
-          console.log(answer.deptName + ' was created successfully!\n');
-          showMenu(connection);
-        }
-      );
+            if (err) throw err;
+            console.log(answer.deptName + ' was created successfully!\n');
+            showMenu(connection);
+            }
+        );
     });
 };
 
-// AddRole();
+const addRole = (connection) => {
+    inquirer
+    .prompt([
+        {
+        name: 'title',
+        type: 'input',
+        message: 'What is the title of the new role?'
+        },
+        {
+        name: 'salary',
+        type: 'input',
+        message: 'What is the salary for this role?'
+        },
+        {
+        name: 'deptID',
+        type: 'input',
+        message: 'What is the department ID for this role?'
+        }
+    ])
+    .then((answer) => {
+        // when finished prompting, insert a new item into the db with that info
+        connection.query(
+        'INSERT INTO role SET ?',
+        {
+            title: answer.title,
+            salary: answer.salary,
+            department_id: answer.deptID
+        },
+        (err) => {
+            if (err) throw err;
+            console.log(answer.title + ' was created successfully!\n');
+            showMenu(connection);
+            }
+        );
+    });
+};
 
-// AddEmployee();
+const addEmployee = (connection) => {
+    inquirer
+    .prompt([
+        {
+        name: 'firstName',
+        type: 'input',
+        message: "What is the new employee's first name?"
+        },
+        {
+        name: 'lastName',
+        type: 'input',
+        message: "What is the new employee's last name?"
+        },
+        {
+        name: 'roleID',
+        type: 'input',
+        message: 'What is the role ID for this employee?'
+        },
+        {
+        name: 'managerID',
+        type: 'input',
+        message: 'What is the employee ID for the manager of this employee?'
+        }
+    ])
+    .then((answer) => {
+        // when finished prompting, insert a new item into the db with that info
+        connection.query(
+        'INSERT INTO employee SET ?',
+        {
+            first_name: answer.firstName,
+            last_name: answer.lastName,
+            role_id: answer.roleID,
+            manager_id: answer.managerID
+        },
+        (err) => {
+            if (err) throw err;
+            console.log(answer.firstName + ' was created successfully!\n');
+            showMenu(connection);
+            }
+        );
+    });
+};
 
 // UpdateEmployee();
   
