@@ -174,6 +174,57 @@ const addEmployee = (connection) => {
     });
 };
 
-// UpdateEmployee();
+const updateEmployee = (connection) => {
+    connection.query('SELECT * FROM employee', (err, res) => {
+    if (err) throw err;
+    // Once you have the employees, prompt the user for which they'd like to update
+    inquirer
+        .prompt([
+            {
+            name: 'employee',
+            type: 'rawlist',
+            choices() {
+                const choiceArray = [];
+                res.forEach(({ last_name }) => {
+                    choiceArray.push(last_name);
+                });
+                return choiceArray;
+                },
+            message: 'Which employee would you like to update?',
+            },
+            {
+            name: 'newRole',
+            type: 'input',
+            message: "What is the employee ID for this employee's new role?"
+            },
+        ])
+        .then((answer) => {
+            // Get the line of the chosen employee from the table
+            let chosenEmployee;
+            res.forEach((employee) => {
+                if (employee.last_name === answer.employee) {
+                    chosenEmployee = employee;
+                }
+            });
+            // Make the employee table update
+            connection.query(
+                'UPDATE employee SET ? WHERE ?',
+                [
+                  {
+                    role_id: answer.newRole
+                  },
+                  {
+                    id: chosenEmployee.id
+                  },
+                ],
+                (error) => {
+                  if (error) throw err;
+                  console.log(answer.employee + ' updated successfully!\n');
+                  showMenu(connection);
+                }
+            );
+        });
+    });
+}
   
 module.exports = showMenu;
