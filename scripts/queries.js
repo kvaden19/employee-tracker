@@ -1,26 +1,66 @@
+const inquirer = require('inquirer');
 const ctable = require('console.table');
 
-// Write all the query functions
-    // Each one needs to take the connection parameter, display results, THEN call start(connection)
-//     .then((answer) => {
-//         // when finished prompting, insert a new item into the db with that info
-//         connection.query(
-//           'INSERT INTO auctions SET ?',
-//           // QUESTION: What does the || 0 do?
-//           {
-//             item_name: answer.item,
-//             category: answer.category,
-//             starting_bid: answer.startingBid || 0,
-//             highest_bid: answer.startingBid || 0,
-//           },
-//           (err) => {
-//             if (err) throw err;
-//             console.log('Your auction was created successfully!');
-//             // re-prompt the user for if they want to bid or post
-//             start();
-//           }
-//         );
-//       });
-//   };
+// function which prompts the user for what action they want to take
+const showMenu = (connection) => {
+    inquirer
+      .prompt({
+        name: 'selection',
+        type: 'list',
+        message: 'What would you like to do?',
+        choices: ['View Departments', 'View Roles', 'View Employees', 'Add Department', 'Add Role', 'Add Employee', 
+        'Update Employee', 'EXIT']
+    })
+    .then((answer) => {
+        // based on their answer, call the appropriate function
+        switch(answer.selection) {
+            case 'View Departments':
+                viewDepartments(connection);
+                break;
+            case 'View Roles':
+                viewRoles();
+                break;
+            case 'View Employees':
+                viewEmployees();
+                break;
+            case 'Add Department':
+                AddDepartment();
+                break;
+            case 'Add Role':
+                AddRole();
+                break;
+            case 'Add Employee':
+                AddEmployee();
+                break;
+            case 'Update Employee':
+                UpdateEmployee();
+                break;                  
+            default:
+                connection.end();
+                break;
+        }
+    });
+};
 
-// Export all the query functions
+const viewDepartments = (connection) => {
+    console.log('Viewing all departments...\n');
+    connection.query('SELECT * FROM department', (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        showMenu(connection);
+    });
+};
+
+// viewRoles();
+
+// viewEmployees();
+
+// AddDepartment();
+
+// AddRole();
+
+// AddEmployee();
+
+// UpdateEmployee();
+  
+module.exports = showMenu;
