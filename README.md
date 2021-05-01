@@ -11,6 +11,7 @@ This project is a simple Content Management System (CMS) for small businesses. I
   ## Table of Contents
   #### [Installation](#Installation) <br>
   #### [Usage](#Usage) <br>
+  #### [Future Work](#FutureWork) <br>
   #### [License](#License) <br>
   #### [Contributing](#Contributing) <br>
   #### [Tests](#Tests) <br>
@@ -38,11 +39,12 @@ Simply select an option. For the "View" options you will immediately see a table
 After every menu selection, the application will display output and then display the menu again so the user can continue interacting with the CMS. Choose "EXIT" from the menu to quit.
 
 View the demonstration video here:
+[Demonstration Video](https://drive.google.com/file/d/158oLlq99XuhUsmVwPhrECzSjm9k6YxZT/view)
 
 
   <br><br>
 
-  ## Future Work
+  ## Future
 
 Future updates to this project will include options to:
   * Update Employee Managers
