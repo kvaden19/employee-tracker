@@ -46,7 +46,7 @@ const viewDepartments = (connection) => {
     console.log('Viewing all departments...\n');
     connection.query('SELECT * FROM department', (err, res) => {
         if (err) throw err;
-        console.log(res);
+        console.table(res);
         showMenu(connection);
     });
 };
