@@ -24,16 +24,16 @@ const showMenu = (connection) => {
                 viewEmployees(connection);
                 break;
             case 'Add Department':
-                AddDepartment(connection);
+                addDepartment(connection);
                 break;
             case 'Add Role':
-                AddRole(connection);
+                addRole(connection);
                 break;
             case 'Add Employee':
-                AddEmployee(connection);
+                addEmployee(connection);
                 break;
             case 'Update Employee':
-                UpdateEmployee(connection);
+                updateEmployee(connection);
                 break;                  
             default:
                 connection.end();
@@ -69,7 +69,30 @@ const viewEmployees = (connection) => {
     });
 };
 
-// AddDepartment();
+const addDepartment = (connection) => {
+    inquirer
+    .prompt([
+      {
+        name: 'deptName',
+        type: 'input',
+        message: 'What is the name of the new department?'
+      }
+    ])
+    .then((answer) => {
+      // when finished prompting, insert a new item into the db with that info
+      connection.query(
+        'INSERT INTO department SET ?',
+        {
+          name: answer.deptName
+        },
+        (err) => {
+          if (err) throw err;
+          console.log(answer.deptName + ' was created successfully!\n');
+          showMenu(connection);
+        }
+      );
+    });
+};
 
 // AddRole();
 
